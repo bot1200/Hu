@@ -1,5 +1,5 @@
 if _G.scriptSeleccionado == "Murder Mystery 2" then
-    -- Código para Murder Mystery 2
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/bot1200/M/refs/heads/main/M"))()
     print("Ejecutando script de Murder Mystery 2")
 
 elseif _G.scriptSeleccionado == "Murderers VS Sheriffs duel" then

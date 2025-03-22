@@ -1,1 +1,23 @@
+if _G.scriptSeleccionado == "Murder Mystery 2" then
+    -- Código para Murder Mystery 2
+    print("Ejecutando script de Murder Mystery 2")
 
+elseif _G.scriptSeleccionado == "Murderers VS Sheriffs duel" then
+    -- Código para Murderers VS Sheriffs duel
+    print("Ejecutando script de Murderers VS Sheriffs duel")
+
+elseif _G.scriptSeleccionado == "Silent Aimbot v4" then
+    -- Código para Silent Aimbot v4
+    print("Ejecutando script de Silent Aimbot v4")
+
+elseif _G.scriptSeleccionado == "Be a Npc Or die" then
+    -- Código para Be a Npc Or die
+    print("Ejecutando script de Be a Npc Or die")
+
+elseif _G.scriptSeleccionado == "MM2 Aim Trainer" then
+    -- Código para MM2 Aim Trainer
+    print("Ejecutando script de MM2 Aim Trainer")
+
+else
+    print("No se encontró un script para ejecutar")
+end

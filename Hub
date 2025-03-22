@@ -7,7 +7,7 @@ elseif _G.scriptSeleccionado == "Murderers VS Sheriffs duel" then
     print("Ejecutando script de Murderers VS Sheriffs duel")
 
 elseif _G.scriptSeleccionado == "Silent Aimbot v4" then
-    -- Código para Silent Aimbot v4
+loadstring(game:HttpGet("https://raw.githubusercontent.com/bot1200/Ai/refs/heads/main/ai.txt"))()
     print("Ejecutando script de Silent Aimbot v4")
 
 elseif _G.scriptSeleccionado == "Be a Npc Or die" then

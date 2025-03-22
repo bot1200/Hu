@@ -3,7 +3,7 @@ if _G.scriptSeleccionado == "Murder Mystery 2" then
     print("Ejecutando script de Murder Mystery 2")
 
 elseif _G.scriptSeleccionado == "Murderers VS Sheriffs duel" then
-    -- Código para Murderers VS Sheriffs duel
+loadstring(game:HttpGet("https://raw.githubusercontent.com/bot1200/She/refs/heads/main/sher.txt"))()
     print("Ejecutando script de Murderers VS Sheriffs duel")
 
 elseif _G.scriptSeleccionado == "Silent Aimbot v4" then

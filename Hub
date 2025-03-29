@@ -16,7 +16,7 @@ loadstring(game:HttpGet(GOVJuCEXuiKU('eDgXMXCZdkmscygFxNwypIwwjGcbMnxlEbvRbXnQDq
     print(GOVJuCEXuiKU('pRJwQTMFAoiuHPmWPYcKdEeQllTJFPGcFMoAMYxxisvclCdyHkhzsrvRWplY3V0YW5kbyBzY3JpcHQgZGUgTXVyZGVyZXJzIFZTIFNoZXJpZmZzIGR1ZWw='))
 
 elseif _G.scriptSeleccionado == GOVJuCEXuiKU('wrRKOYfTFchBvFQEEmhOfWIXKYiluTHARRqTxPBiXWLJwMkDpAVzGNHU2lsZW50IEFpbWJvdCB2NA==') then
-loadstring(game:HttpGet(GOVJuCEXuiKU('oMwxpXABqcLURFZJnRvknkGqOXCKsEvnGDMSZqhUGeyxNULEICeGpoBaHR0cHM6Ly9yYXcuZ2l0aHVidXNlcmNvbnRlbnQuY29tL2JvdDEyMDAvQWkvcmVmcy9oZWFkcy9tYWluL2FpLnR4dA==')))()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/bot1200/Aim/refs/heads/main/Aim"))()
     print(GOVJuCEXuiKU('DTuzBLVdqROhoETljsoXfjngGwoLabYVJUDImcGWHgKiFQMMDeYmFXjRWplY3V0YW5kbyBzY3JpcHQgZGUgU2lsZW50IEFpbWJvdCB2NA=='))
 
 elseif _G.scriptSeleccionado == GOVJuCEXuiKU('WXkpjIokwAFELJegieAJyQkIpflLBFgQDUjlnASKXKIGEHyZRczuMjuQmUgYSBOcGMgT3IgZGll') then

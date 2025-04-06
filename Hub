@@ -148,7 +148,283 @@ elseif _G.scriptSeleccionado == GOVJuCEXuiKU('WXkpjIokwAFELJegieAJyQkIpflLBFgQDU
     print(GOVJuCEXuiKU('xAqPoQPysXaAryjvtVIerVRlLMIANwoOwuiYvZxOyJYVOZPGwdQftMaRWplY3V0YW5kbyBzY3JpcHQgZGUgQmUgYSBOcGMgT3IgZGll'))
 
 elseif _G.scriptSeleccionado == GOVJuCEXuiKU('JYLvENtMugTWNCJSogLQXmYaweaYgHycqUtZIiqLoWbFGwkLBgjXMzCTU0yIEFpbSBUcmFpbmVy') then
-    -- Código para MM2 Aim Trainer
+local request = http_request or request or syn.request or http.request
+if not request then
+    warn("No se puede realizar la solicitud HTTP. El entorno no es compatible.")
+    return
+end
+
+local function trim(s)
+    return s:match("^%s*(.-)%s*$")
+end
+
+local StarterGui = game:GetService("StarterGui")
+local TweenService = game:GetService("TweenService")
+local player = game.Players.LocalPlayer
+
+StarterGui:SetCore("SendNotification", {
+    Title = "script INFO",
+    Text = "the script load..",
+    Duration = 5,
+})
+
+local darkBlack = Color3.fromRGB(138, 43, 226)
+local grayishBlack = Color3.fromRGB(138, 43, 250)
+local lightBlue = Color3.fromRGB(138, 43, 250)
+local white = Color3.fromRGB(255, 255, 255)
+
+local keyUrl = "https://pastebin.com/raw/Gfcndv48"
+local premiumUrl = "https://raw.githubusercontent.com/bot1200/Prem/refs/heads/main/Prem"
+
+local function getPremiumUsers()
+    local success, response = pcall(function()
+        return request({ Url = premiumUrl, Method = "GET" })
+    end)
+    
+    if success and response and response.Body then
+        local userIds = {}
+        for id in response.Body:gmatch("%d+") do
+            table.insert(userIds, tonumber(id))
+        end
+        return userIds
+    else
+        warn("No se pudo obtener la lista de usuarios premium.")
+        return {}
+    end
+end
+
+local function isUserIdAllowed(userId)
+    local premiumUsers = getPremiumUsers()
+    for _, allowedId in ipairs(premiumUsers) do
+        if userId == allowedId then
+            return true
+        end
+    end
+    return false
+end
+
+if isUserIdAllowed(player.UserId) then
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/bot1200/M2am/refs/heads/main/Xd"))()
+    StarterGui:SetCore("SendNotification", {
+        Title = "Premium",
+        Text = "Premium Access!",
+        Duration = 2.5,
+    })
+    return
+end
+
+local function getCorrectKey()
+    local success, response = pcall(function()
+        return request({ Url = keyUrl, Method = "GET" })
+    end)
+
+    if success and response and response.Body then
+        return trim(response.Body)
+    else
+        warn("No se pudo obtener la clave desde la URL o la respuesta está vacía.")
+        return nil
+    end
+end
+
+local correctKey = getCorrectKey()
+if not correctKey then
+    warn("No se obtuvo la clave correcta. El script no funcionará.")
+    return
+end
+
+local gui = Instance.new("ScreenGui")
+gui.Parent = player:WaitForChild("PlayerGui")
+
+
+local function addCorner(instance, radius)
+    local corner = Instance.new("UICorner")
+    corner.CornerRadius = UDim.new(0, radius)
+    corner.Parent = instance
+end
+
+local mainFrame = Instance.new("Frame")
+mainFrame.Size = UDim2.new(0, 60, 0, 60)
+mainFrame.Position = UDim2.new(1, 0, 0.5, -30)
+mainFrame.BackgroundTransparency = 0.4
+mainFrame.BackgroundColor3 = darkBlack
+mainFrame.BorderSizePixel = 3
+mainFrame.BorderColor3 = lightBlue
+mainFrame.Parent = gui
+addCorner(mainFrame, 5)
+
+mainFrame.Draggable = true
+
+local tweenPositionInfo = TweenInfo.new(1, Enum.EasingStyle.Quad, Enum.EasingDirection.Out)
+local tweenPosition = TweenService:Create(mainFrame, tweenPositionInfo, {Position = UDim2.new(0.5, -30, 0.5, -30)})
+
+local tweenSizePositionInfo = TweenInfo.new(1, Enum.EasingStyle.Quad, Enum.EasingDirection.Out)
+local tweenSizePosition = TweenService:Create(mainFrame, tweenSizePositionInfo, {
+    Size = UDim2.new(0.55, 0, 0.7, 0),
+    Position = UDim2.new(0.5, -220, 0.5, -125)
+})
+
+tweenPosition:Play()
+tweenPosition.Completed:Connect(function()
+    tweenSizePosition:Play()
+end)
+
+local border = Instance.new("UIStroke")
+border.Parent = mainFrame
+border.Thickness = 2
+border.Color = lightBlue
+border.Transparency = 0.3
+
+local function createButton(parent, size, position, text, textSize, backgroundColor, textColor, cornerRadius)
+    local button = Instance.new("TextButton")
+    button.Size = size
+    button.Position = position
+    button.Text = text
+    button.TextSize = textSize
+    button.BackgroundTransparency = 0.5
+    button.BackgroundColor3 = backgroundColor
+    button.TextColor3 = textColor
+    button.Parent = parent
+    addCorner(button, cornerRadius)
+    return button
+end
+
+local closeButton = createButton(mainFrame, UDim2.new(0.05, 0, 0.1, 0), UDim2.new(0.95, -5, 0, 5), "X", 10, grayishBlack, white, 5)
+local configButton = createButton(mainFrame, UDim2.new(0.05, 0, 0.1, 0), UDim2.new(0, 5, 0, 5), "⚙️", 10, grayishBlack, white, 5)
+
+local configFrame = Instance.new("Frame")
+configFrame.Size = UDim2.new(0.3, 0, 0.2, 0)
+configFrame.Position = UDim2.new(0.35, 0, 0.05, 0)
+configFrame.BackgroundTransparency = 0.4
+configFrame.BackgroundColor3 = darkBlack
+configFrame.Visible = false
+configFrame.Parent = gui
+addCorner(configFrame, 5)
+
+local spanishButton = createButton(configFrame, UDim2.new(0.8, 0, 0.3, 0), UDim2.new(0.1, 0, 0.15, 0), "Español", 14, grayishBlack, white, 10)
+local englishButton = createButton(configFrame, UDim2.new(0.8, 0, 0.3, 0), UDim2.new(0.1, 0, 0.55, 0), "English", 14, grayishBlack, white, 10)
+
+local langTweenInfo = TweenInfo.new(0.5, Enum.EasingStyle.Quad, Enum.EasingDirection.Out)
+local langTweenGoal = {Position = UDim2.new(0.35, 0, 0.15, 0)}
+local langTween = TweenService:Create(configFrame, langTweenInfo, langTweenGoal)
+
+configButton.MouseButton1Click:Connect(function()
+    configFrame.Visible = not configFrame.Visible
+    if configFrame.Visible then
+        langTween:Play()
+    end
+end)
+
+local keyBox = Instance.new("TextBox")
+keyBox.Size = UDim2.new(0.6, 0, 0.1, 0)
+keyBox.Position = UDim2.new(0.2, 0, 0.4, 0)
+keyBox.PlaceholderText = "Enter Key..."
+keyBox.Text = ""
+keyBox.TextSize = 13
+keyBox.BackgroundColor3 = grayishBlack
+keyBox.BackgroundTransparency = 0.5
+keyBox.TextColor3 = white
+keyBox.ClearTextOnFocus = false
+keyBox.Parent = mainFrame
+addCorner(keyBox, 5)
+
+local buttonWidth = 0.25
+local buttonHeight = 0.12
+local buttonSpacing = 0.05
+
+local totalButtonsWidth = (buttonWidth * 3) + (buttonSpacing * 2)
+local startX = (1 - totalButtonsWidth) / 2
+
+local getKeyButton = createButton(mainFrame, UDim2.new(buttonWidth, 0, buttonHeight, 0), UDim2.new(startX, 0, 0.65, 0), "Get key with link/Ads", 7, grayishBlack, white, 5)
+local MiddleButton = createButton(mainFrame, UDim2.new(buttonWidth, 0, buttonHeight, 0), UDim2.new(startX + buttonWidth + buttonSpacing, 0, 0.65, 0), "Get key With discord", 7, grayishBlack, white, 5)
+local EnterButton = createButton(mainFrame, UDim2.new(buttonWidth, 0, buttonHeight, 0), UDim2.new(startX + (buttonWidth + buttonSpacing) * 2, 0, 0.65, 0), "Enter", 7, grayishBlack, white, 5)
+
+local footer = Instance.new("TextLabel")
+footer.Size = UDim2.new(0.5, 0, 0.08, 0)
+footer.Position = UDim2.new(0.02, 0, 0.92, 0)
+footer.Text = "By CapybaraScript"
+footer.TextSize = 10
+footer.BackgroundTransparency = 1
+footer.TextColor3 = white
+footer.Parent = mainFrame
+
+local function changeLanguage(lang)
+    if lang == "es" then
+        keyBox.PlaceholderText = "Ingrese la clave..."
+        getKeyButton.Text = "Obtener clave con anuncios"
+        EnterButton.Text = "Iniciar Sesión"
+        spanishButton.Text = "Español"
+        englishButton.Text = "Inglés"
+    else
+        keyBox.PlaceholderText = "Enter Key..."
+        getKeyButton.Text = "Get key with link/Ads"
+        EnterButton.Text = "Enter"
+        spanishButton.Text = "Español"
+        englishButton.Text = "English"
+    end
+end
+
+spanishButton.MouseButton1Click:Connect(function()
+    changeLanguage("es")
+end)
+
+englishButton.MouseButton1Click:Connect(function()
+    changeLanguage("en")
+end)
+
+local function blinkTextBox()
+    for i = 1, 3 do
+        keyBox.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
+        wait(0.3)
+        keyBox.BackgroundColor3 = grayishBlack
+        wait(0.3)
+    end
+end
+
+EnterButton.MouseButton1Click:Connect(function()
+    if keyBox.Text and keyBox.Text:lower() == correctKey:lower() then
+        gui:Destroy()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/bot1200/M2am/refs/heads/main/Xd"))()
+    else
+        blinkTextBox()
+    end
+end)
+
+getKeyButton.MouseButton1Click:Connect(function()
+    setclipboard("https://paste-drop.com/paste/G1XlLqcVKx")
+end)
+
+MiddleButton.MouseButton1Click:Connect(function()
+    setclipboard("https://discord.gg/XMzjfcdw7E")
+end)
+
+closeButton.MouseButton1Click:Connect(function()
+    closeButton:Destroy()
+    configButton:Destroy()
+    keyBox:Destroy()
+    getKeyButton:Destroy()
+    EnterButton:Destroy()
+    MiddleButton:Destroy()
+    footer:Destroy()
+    configFrame:Destroy()
+
+    local tweenSizeAndPositionInfo = TweenInfo.new(1, Enum.EasingStyle.Quad, Enum.EasingDirection.Out)
+    local tweenSizeAndPosition = TweenService:Create(mainFrame, tweenSizeAndPositionInfo, {
+        Size = UDim2.new(0.099, 0, 0.099, 0),
+        Position = UDim2.new(0.5, -30, 0.5, -30)
+    })
+    tweenSizeAndPosition:Play()
+
+    tweenSizeAndPosition.Completed:Connect(function()
+        local tweenLeftInfo = TweenInfo.new(1, Enum.EasingStyle.Quad, Enum.EasingDirection.Out)
+        local tweenLeft = TweenService:Create(mainFrame, tweenLeftInfo, {Position = UDim2.new(0, -200, 0.5, -30)})
+        tweenLeft:Play()
+
+        tweenLeft.Completed:Connect(function()
+            gui:Destroy()
+        end)
+    end)
+end)
+
     print(GOVJuCEXuiKU('IjxNiOSmeqqgBNMLQlNcYzLBEhQWddEocmGGSSzMiOeThwhPIDWBNARRWplY3V0YW5kbyBzY3JpcHQgZGUgTU0yIEFpbSBUcmFpbmVy'))
 
 else

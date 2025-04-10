@@ -390,11 +390,11 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/bot1200/M2am/refs/hea
 end)
 
 getKeyButton.MouseButton1Click:Connect(function()
-    setclipboard("https://paste-drop.com/paste/G1XlLqcVKx")
+    setclipboard("https://paste-drop.com/paste/nxzoRKzLDO")
 end)
 
 MiddleButton.MouseButton1Click:Connect(function()
-    setclipboard("https://discord.gg/XMzjfcdw7E")
+    setclipboard("https://discord.gg/ttkTf8uR")
 end)
 
 closeButton.MouseButton1Click:Connect(function()

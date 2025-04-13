@@ -143,9 +143,8 @@ elseif _G.scriptSeleccionado == GOVJuCEXuiKU('wrRKOYfTFchBvFQEEmhOfWIXKYiluTHARR
 loadstring(game:HttpGet("https://raw.githubusercontent.com/bot1200/Aim/refs/heads/main/Aim"))()
     print(GOVJuCEXuiKU('DTuzBLVdqROhoETljsoXfjngGwoLabYVJUDImcGWHgKiFQMMDeYmFXjRWplY3V0YW5kbyBzY3JpcHQgZGUgU2lsZW50IEFpbWJvdCB2NA=='))
 
-elseif _G.scriptSeleccionado == GOVJuCEXuiKU('WXkpjIokwAFELJegieAJyQkIpflLBFgQDUjlnASKXKIGEHyZRczuMjuQmUgYSBOcGMgT3IgZGll') then
-    -- Código para Be a Npc Or die
-    print(GOVJuCEXuiKU('xAqPoQPysXaAryjvtVIerVRlLMIANwoOwuiYvZxOyJYVOZPGwdQftMaRWplY3V0YW5kbyBzY3JpcHQgZGUgQmUgYSBOcGMgT3IgZGll'))
+elseif _G.scriptSeleccionado == "Dead rails" then
+loadstring(game:HttpGet("https://raw.githubusercontent.com/bot1200/De/refs/heads/main/De"))()
 
 elseif _G.scriptSeleccionado == GOVJuCEXuiKU('JYLvENtMugTWNCJSogLQXmYaweaYgHycqUtZIiqLoWbFGwkLBgjXMzCTU0yIEFpbSBUcmFpbmVy') then
 local request = http_request or request or syn.request or http.request
